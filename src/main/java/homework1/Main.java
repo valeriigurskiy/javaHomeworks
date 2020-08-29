@@ -23,7 +23,6 @@ public class Main {
         PreparedStatement preparedStatement = connection.prepareStatement("select * from actor");
         ResultSet resultSet = preparedStatement.executeQuery();
         JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 
         ArrayList<Actor> actors = new ArrayList<Actor>();
 
@@ -31,14 +30,14 @@ public class Main {
             int actor_id = resultSet.getInt(1);
             String first_name = resultSet.getString(2);
             String last_name = resultSet.getString(3);
-            actors.add(new Actor(Integer.toString(actor_id), first_name, last_name));
+            actors.add(new Actor(actor_id, first_name, last_name));
         }
 
         TableModel model = new MyTableModel(actors);
         JTable table = new JTable(model);
         JButton button = new JButton();
 
-        frame.getContentPane().add(new JScrollPane(table));
+        frame.add(new JScrollPane(table));
         frame.setBounds(500,500, 500,500);
         frame.pack();
         frame.setLocationRelativeTo(null);

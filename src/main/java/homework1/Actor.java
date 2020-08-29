@@ -47,11 +47,11 @@ class MyTableModel implements TableModel {
         Actor actor = actors.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return actor.getName();
+                return actor.getActor_id();
             case 1:
-                return actor.getSize();
+                return actor.getFirst_name();
             case 2:
-                return actor.getDescription();
+                return actor.getLast_name();
         }
         return "";
     }
@@ -72,37 +72,37 @@ class MyTableModel implements TableModel {
 
 public class Actor {
 
-    private String name;
-    private String size;
-    private String description;
+    private int actor_id;
+    private String first_name;
+    private String last_name;
 
-    public Actor(String name, String size, String description) {
-        this.setName(name);
-        this.setSize(size);
-        this.setDescription(description);
+    public Actor(int actor_id, String first_name, String last_name) {
+        this.setActor_id(actor_id);
+        this.setFirst_name(first_name);
+        this.setLast_name(last_name);
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getActor_id() {
+        return actor_id;
     }
 
-    public String getName() {
-        return name;
+    public void setActor_id(int actor_id) {
+        this.actor_id = actor_id;
     }
 
-    public void setSize(String size) {
-        this.size = size;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public String getSize() {
-        return size;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public String getDescription() {
-        return description;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 }
