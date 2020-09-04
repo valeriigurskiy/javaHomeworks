@@ -15,10 +15,7 @@ public class Users {
         File usersFile = new File("Users.txt");
         StringBuilder usersList = new StringBuilder();
 
-
         int i = 0;
-        int q = 0;
-
         try {
             URL url = new URL("https://jsonplaceholder.typicode.com/users");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -32,15 +29,14 @@ public class Users {
             for (int j = 0; j < usersArray.length(); j++) {
                 JSONObject object = usersArray.getJSONObject(j);
                 int id = object.getInt("id");
-                String name = object.getString("name");
-                String username = object.getString("username");
-                String email = object.getString("email");
-                String phone = object.getString("phone");
-                String website = object.getString("website");
+                String name, username, email, phone, website;
+                name = object.getString("name");
+                username = object.getString("username");
+                email = object.getString("email");
+                phone = object.getString("phone");
+                website = object.getString("website");
 
-                usersList.append("Id: ").append(id).append("\n").append("Name: ").append(name).append("\n").append("Username: ").append(username).append("\n");
-                usersList.append("Email: ").append(email).append("\n").append("Phone: ").append(phone).append("\n").append("Website: ").append(website).append("\n");
-                usersList.append("\n");
+                usersList.append(String.format("Id: %s\nName: %s\nUsername: %s\nEmail: %s\nPhone: %s\nWebsite: %s\n\n", id, name, username, email, phone, website));
             }
 
             try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(usersFile))) {
