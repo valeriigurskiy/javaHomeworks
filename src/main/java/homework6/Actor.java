@@ -1,4 +1,4 @@
-package homework1;
+package homework6;
 
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;

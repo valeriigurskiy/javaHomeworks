@@ -1,14 +1,9 @@
-package homework1;
+package homework6;
 
-import java.awt.Dimension;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import javax.swing.*;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
 public class Main {
