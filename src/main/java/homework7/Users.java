@@ -13,10 +13,11 @@ import java.util.List;
 public class Users {
     public void writeAllUsers() {
         File usersFile = new File("Users.txt");
-        List<String> usersList = new ArrayList<String>();
+        StringBuilder usersList = new StringBuilder();
 
 
         int i = 0;
+        int q = 0;
 
         try {
             URL url = new URL("https://jsonplaceholder.typicode.com/users");
@@ -37,14 +38,13 @@ public class Users {
                 String phone = object.getString("phone");
                 String website = object.getString("website");
 
-                usersList.add("Id: " + id + "\n" + "Name: " + name + "\n"
-                        + "Username: " + username + "\n" + "Email: " + email + "\n"
-                        + "Phone: " + phone + "\n" + "Website: " + website + "\n");
+                usersList.append("Id: ").append(id).append("\n").append("Name: ").append(name).append("\n").append("Username: ").append(username).append("\n");
+                usersList.append("Email: ").append(email).append("\n").append("Phone: ").append(phone).append("\n").append("Website: ").append(website).append("\n");
+                usersList.append("\n");
             }
+
             try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(usersFile))) {
-                for (String user : usersList) {
-                    bufferedWriter.write(user + "\n");
-                }
+                bufferedWriter.write(String.valueOf(usersList));
             }
 
         } catch (IOException e) {
@@ -52,11 +52,9 @@ public class Users {
         }
     }
 
-
-
     public void writeUsersEmailOnly() {
         File usersFile = new File("UsersEmails.txt");
-        List<String> emailsList = new ArrayList<String>();
+        StringBuilder emailsList = new StringBuilder();
 
         int i = 0;
 
@@ -73,13 +71,11 @@ public class Users {
             for (int j = 0; j < emailsArray.length(); j++) {
                 JSONObject object = emailsArray.getJSONObject(j);
                 String email = object.getString("email");
-                emailsList.add(email);
+                emailsList.append(email).append("\n");
             }
             try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(usersFile))) {
                 bufferedWriter.write("Emails\n");
-                for (String email : emailsList) {
-                    bufferedWriter.write(email + "\n");
-                }
+                bufferedWriter.write(String.valueOf(emailsList));
             }
 
         } catch (IOException e) {
